@@ -16,9 +16,11 @@ every 4 hours.
 
 ## Caffeinate
 
-Choose if you want your screen saver to work or not. When the 🥱 icon is in the
+Choose if you don't want your system to fall asleep. When the 🥱 icon is in the
 menu bar, the screen saver will work as usual. But when the ☕️ icon is in the
-menu bar, your screen saver will not start. You've caffeinated your mac.
+menu bar, your screen saver will not start. If you manually trigger the screen
+saver, the system also won't fall asleep after the amount of time configured in
+the energy saving settings. You've caffeinated your mac.
 
 ## Weeknr
 
