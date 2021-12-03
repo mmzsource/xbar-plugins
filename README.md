@@ -16,11 +16,12 @@ every 4 hours.
 
 ## Caffeinate
 
-Choose if you don't want your system to fall asleep. When the 🥱 icon is in the
-menu bar, the screen saver will work as usual. But when the ☕️ icon is in the
-menu bar, your screen saver will not start. If you manually trigger the screen
-saver, the system also won't fall asleep after the amount of time configured in
-the "energy saver" settings of your OS. You've caffeinated your mac.
+Decide if you want your system to fall asleep or stay awake independent of the
+screen saver - and energy saver settings. When the 🥱 icon is in the menu bar,
+the screen saver will work as usual. But when the ☕️ icon is in the menu bar,
+your screen saver will not start. If you manually trigger the screen saver, the
+system also won't fall asleep after the amount of time configured in the "energy
+saver" settings of your OS. You've caffeinated your mac.
 
 ## Weeknr
 
@@ -29,9 +30,8 @@ calendar with more detailed calendar info.
 
 ## Pomodoro
 
-Original source: https://github.com/alekseysotnikov/pomodoro-xbar
-
-This helped me writing my own xbar plugins in babashka.
+This code helped me write my own xbar plugins in babashka:
+https://github.com/alekseysotnikov/pomodoro-xbar
 
 # Contributing
 
@@ -42,8 +42,4 @@ if you'd create an issue.
 
 # License
 
-I have nothing to say about the license of pomodoro-xbar (which is created and
-owned by [Aleksei Sotnikov](https://github.com/alekseysotnikov)).
-
-The other plugins - that I wrote - are free to use, copy and change at your own
-risk.
+These plugins are free to use, copy and change at your own risk.
