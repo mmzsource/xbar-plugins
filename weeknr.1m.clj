@@ -24,11 +24,6 @@
 ;; 'Menlo Regular' and it should do no trimming. This in order to make the day
 ;; numbers, day names and weeknumbers line out properly.
 
-(def month
-  (clojure.string/replace (:out (shell/sh "ncal" "-w")) #"\n" " | font='Menlo Regular' trim=false\n"))
+(def month (clojure.string/replace (:out (shell/sh "ncal" "-w")) #"\n" " | font='Menlo Regular' trim=false\n"))
 
-(println (str weeknr
-              "\n---\n"
-              month
-              "---\n"
-              "calendar | href=https://www.calendar-365.com"))
+(println (str weeknr "\n---\n" month "---\n" "calendar | href=https://www.calendar-365.com"))
