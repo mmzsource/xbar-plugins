@@ -25,8 +25,8 @@ saver" settings of your OS. You've caffeinated your mac.
 
 ## Weeknr
 
-Simply display the current week number and have a quick link to an online
-calendar with more detailed calendar info.
+Simply display the current week number, the current month, and have a quick link
+to an online calendar with more detailed calendar info.
 
 ## Pomodoro
 
