@@ -42,6 +42,6 @@
                               :results)
         sunrise-raw       (:sunrise astronomical-data)
         sunset-raw        (:sunset  astronomical-data)]
-    (str "☼↑ " (localtime sunrise-raw) "       ☼↓ " (localtime sunset-raw))))
+    (str "☼↑ " (localtime sunrise-raw) "       ☼↓ " (localtime sunset-raw) " | font='Menlo Bold' color=black")))
 
-(println (str weeknr "\n---\n" month "---\n" (sunrise-sunset) "\n---\n" "calendar | href=https://www.calendar-365.com"))
+(println (str weeknr "\n---\n" month "---\n" (sunrise-sunset) "\n---\n" "www.calendar-365.com | font='Menlo Bold' color=black href=https://www.calendar-365.com"))
