@@ -25,13 +25,42 @@ saver" settings of your OS. You've caffeinated your mac.
 
 ## Weeknr
 
-Simply display the current week number, the current month, and have a quick link
-to an online calendar with more detailed calendar info.
+Simply display the current week number, the current month, the sunrise and
+sunset times for a certain Locale and have a quick link to an online calendar
+with more detailed calendar info.
 
 ## Pomodoro
 
 This code helped me write my own xbar plugins in babashka:
 https://github.com/alekseysotnikov/pomodoro-xbar
+
+# Issues
+
+## debugging
+
+Simply run the script in the git repository folder and inspect the output
+String. It should adhere to the XBAR interface spec.
+
+## operation not permitted
+
+As described in the xbar plugin documentation: your script should be executable
+(`chmod +x`). Still, your plugin might not work, depending on how you edit it.
+When I edited the script once in TextEdit (not recommended) the script returned
+a 'operation not permitted' error.
+
+Most advice tells you to grant Terminal full disk access in that case (System
+Preferences > Security & Privacy > Privacy > Full Disk Access). That didn't work
+for me though. What worked for me is checking the extended attributes of the
+script:
+
+`xattr -l /path/to/my/script.clj`
+
+In my case there was an `com.apple.quarantine` entry in there, apparently
+created when saving via TextEdit.
+
+I had to remove it using:
+
+`xattr -d com.apple.quarantine /path/to/my/script.clj`
 
 # Contributing
 

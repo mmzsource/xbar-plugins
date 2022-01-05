@@ -24,6 +24,24 @@
 ;; 'Menlo Regular' and it should do no trimming. This in order to make the day
 ;; numbers, day names and weeknumbers line out properly.
 
-(def month (clojure.string/replace (:out (shell/sh "ncal" "-w")) #"\n" " | font='Menlo Regular' trim=false\n"))
+(def month (clojure.string/replace (:out (shell/sh "ncal" "-w")) #"\n" " | font='Menlo Bold' color=black trim=false\n"))
 
-(println (str weeknr "\n---\n" month "---\n" "calendar | href=https://www.calendar-365.com"))
+(defn localtime [utc-time-string]
+  (-> utc-time-string
+    (str/replace "+00:00" "Z") ;; I *know* this is UTC (and not some local server time) from the API docs of sunrise-sunset.org/api
+    (java.time.Instant/parse)
+    (.atZone (java.time.ZoneId/of "Europe/Amsterdam"))
+    (.toLocalTime)))
+
+;; lat & lng for Eindhoven, Netherlands ... Find your lat & lng and TimeZone on https://sunrise-sunset.org
+
+(defn sunrise-sunset []
+  (let [astronomical-data (-> (babashka.curl/get "https://api.sunrise-sunset.org/json?lat=51.4392648&lng=5.478633&formatted=0")
+                              :body
+                              (cheshire.core/parse-string true)
+                              :results)
+        sunrise-raw       (:sunrise astronomical-data)
+        sunset-raw        (:sunset  astronomical-data)]
+    (str "☼↑ " (localtime sunrise-raw) "       ☼↓ " (localtime sunset-raw))))
+
+(println (str weeknr "\n---\n" month "---\n" (sunrise-sunset) "\n---\n" "calendar | href=https://www.calendar-365.com"))
