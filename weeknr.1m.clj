@@ -35,12 +35,15 @@
 
 (def month (clojure.string/replace (:out (shell/sh "ncal" "-w")) #"\n" " | font='Menlo Bold' color=black trim=false\n"))
 
+(import java.time.format.DateTimeFormatter)
+
 (defn localtime [utc-time-string]
   (-> utc-time-string
     (str/replace "+00:00" "Z") ;; I *know* this is UTC (and not some local server time) from the API docs of sunrise-sunset.org/api
     (java.time.Instant/parse)
     (.atZone (java.time.ZoneId/of "Europe/Amsterdam"))
-    (.toLocalTime)))
+    (.toLocalTime)
+    (.format (DateTimeFormatter/ofPattern "HH:mm"))))
 
 ;; lat & lng for Eindhoven, Netherlands ... Find your lat & lng and TimeZone on https://sunrise-sunset.org
 
@@ -51,6 +54,6 @@
                               :results)
         sunrise-raw       (:sunrise astronomical-data)
         sunset-raw        (:sunset  astronomical-data)]
-    (str "☼↑ " (localtime sunrise-raw) "       ☼↓ " (localtime sunset-raw) " | font='Menlo Bold' color=black")))
+    (str "☼↑ " (localtime sunrise-raw) "    ☼↓ " (localtime sunset-raw) " | font='Menlo Bold' color=black")))
 
 (println (str weeknr "\n---\n" month "---\n" (sunrise-sunset) "\n---\n" "www.calendar-365.com | font='Menlo Bold' color=black href=https://www.calendar-365.com"))
