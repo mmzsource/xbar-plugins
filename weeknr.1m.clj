@@ -14,11 +14,20 @@
 ;; because that's an interface to XBAR telling it it needs to run every minute.
 ;;
 
+(defn emoji-of [number-char]
+  (let [emojis ["0️⃣" "1️⃣" "2️⃣" "3️⃣" "4️⃣" "5️⃣" "6️⃣" "7️⃣" "8️⃣" "9️⃣"]]
+    (nth emojis (Character/getNumericValue number-char))))
+
+(defn emoji-fy [number-string]
+  (apply str (mapcat emoji-of number-string)))
+
 ;; butlast to remove the newline at the end (the newline creates a new menu-item
 ;; in xbar and xbar will cycle between weeknr and a newline - not what we want)
 ;; apply str to then change all the loose chars into one string again.
 
-(def weeknr (apply str (butlast (:out (shell/sh "date" "+(wk%V)")))))
+(def weeknr
+  (let [weeknr (apply str (butlast (:out (shell/sh "date" "+%V"))))]
+    (emoji-fy weeknr)))
 
 ;; telling xbar that every line that is printed should have the monospaced font
 ;; 'Menlo Regular' and it should do no trimming. This in order to make the day
